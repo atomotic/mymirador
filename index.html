@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <title>my mirador viewer</title>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+        />
+    </head>
+    <body>
+        <div
+            id="mirador"
+            style="position: absolute; top: 0; bottom: 0; left: 0; right: 0"
+        ></div>
+        <script
+            type="text/javascript"
+            src="https://unpkg.com/mirador@latest/dist/mirador.min.js"
+        ></script>
+        <script type="text/javascript">
+            var params = new URL(window.location.href).searchParams;
+            var manifestId = params.get("iiif-content");
+            var miradorInstance = Mirador.viewer({
+                id: "mirador",
+                windows: [
+                    {
+                        id: "window1",
+                        loadedManifest: manifestId,
+                    },
+                ],
+                selectedTheme: "dark",
+                themes: {
+                    dark: {
+                        palette: {
+                            type: "dark",
+                            primary: {
+                                main: "#FFFFFF",
+                            },
+                        },
+                    },
+                },
+                osdConfig: { maxZoomPixelRatio: 10 },
+                window: {
+                    allowFullscreen: true,
+                },
+            });
+        </script>
+    </body>
+</html>
